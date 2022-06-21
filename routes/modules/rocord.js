@@ -31,6 +31,11 @@ router.get('/edit/:id', async (req, res) => {
     .catch(err => console.log(err))
 })
 
-
+router.put('/edit/:id', (req, res) => {
+  const _id = req.params.id
+  Record.findOneAndUpdate({ _id }, req.body)
+    .then(() => res.redirect('/'))
+    .catch(err => console.log(err))
+})
 
 module.exports = router
