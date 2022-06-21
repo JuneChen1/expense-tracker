@@ -5,7 +5,7 @@ const Category = require('../../models/category')
 
 router.get('/', async (req, res) => {
   const categories = await Category.find()
-  console.log(categories)
+  let totalAmount = 0
   Record.find()
     .sort({ 'date': 'asc'})
     .lean()
@@ -17,8 +17,9 @@ router.get('/', async (req, res) => {
         record.date = year + '/' + month + '/' + date
         const icon = categories.find(category => record.categoryId === category.id).icon
         record.icon = icon
+        totalAmount += Number(record.amount)
       })
-      res.render('index', { records })
+      res.render('index', { records, totalAmount })
     })
     .catch(err => console.log(err))
 })
