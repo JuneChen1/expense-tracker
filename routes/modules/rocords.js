@@ -3,7 +3,6 @@ const router = express.Router()
 const moment = require('moment')
 const Record = require('../../models/record')
 const Category = require('../../models/category')
-const { rawListeners } = require('../../models/record')
 
 // add new record
 router.get('/new', async (req, res) => {
