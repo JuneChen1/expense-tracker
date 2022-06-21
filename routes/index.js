@@ -1,9 +1,11 @@
 const express = require('express')
 const router = express.Router()
 const home = require('./modules/home')
-const recrod = require('./modules/rocords')
+const recrods = require('./modules/rocords')
+const users = require('./modules/users')
 
-router.use('/records', recrod)
+router.use('/records', recrods)
+router.use('/users', users)
 router.use('/', home)
 
 module.exports = router
