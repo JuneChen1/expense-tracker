@@ -4,8 +4,6 @@ const routes = require('./routes')
 
 const app = express()
 
-const port = 3000
-
 require('dotenv').config()
 require('./config/mongoose')
 

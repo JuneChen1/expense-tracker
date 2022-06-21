@@ -7,13 +7,13 @@ router.get('/', async (req, res) => {
   const categories = await Category.find()
   let totalAmount = 0
   Record.find()
-    .sort({ 'date': 'asc'})
     .lean()
+    .sort({ date: 'asc' })
     .then(records => {
       records.forEach(record => {
-        let year = record.date.getYear() + 1900
-        let month = record.date.getMonth() + 1
-        let date = record.date.getDate().toString()
+        const year = record.date.getYear() + 1900
+        const month = record.date.getMonth() + 1
+        const date = record.date.getDate().toString()
         record.date = year + '/' + month + '/' + date
         const icon = categories.find(category => record.categoryId === category.id).icon
         record.icon = icon
