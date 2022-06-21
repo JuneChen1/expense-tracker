@@ -1,0 +1,44 @@
+<form action="/records/new" method="POST" class="mt-5 d-flex flex-column align-items-center">
+  <div class="d-flex justify-content-between" style="width: 100%;">
+    <span class="ms-3">*必填欄位</span>
+    <h4 class="me-5">請輸入你的支出</h4>
+  </div>
+  <div class="input-group input-group-lg mt-4">
+    <span class="input-group-text" id="inputGroup-sizing-lg" style="background-color: white; border: none;">
+      名稱*：
+    </span>
+    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg"
+    name="name" required>
+  </div>
+
+  <div class="input-group input-group-lg mt-4">
+    <span class="input-group-text" id="inputGroup-sizing-lg" style="background-color: white; border: none;">
+      日期*：
+    </span>
+    <input type="date" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg"
+    name="date" required>
+  </div>
+
+  <div class="input-group input-group-lg mt-4">
+    <span class="input-group-text" id="inputGroup-sizing-lg" style="background-color: white; border: none;">
+      類別*：
+    </span>
+    <select class="form-select" aria-label="Default select example" name="category" required>
+      <option value="1">家居物業</option>
+      <option value="2">Two</option>
+      <option value="3">Three</option>
+    </select>
+  </div>
+
+  <div class="input-group input-group-lg my-4">
+    <span class="input-group-text" id="inputGroup-sizing-lg" style="background-color: white; border: none;" required>
+      金額*：
+    </span>
+    <input type="number" min="0" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg"
+    name="amount" required>
+  </div>
+
+  <button type="submit" class="btn btn-light px-5 mt-2" style="border-color: black;">
+    新增支出
+  </button>
+</form>
