@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const moment = require('moment')
 const Record = require('../../models/record')
 const Category = require('../../models/category')
 
@@ -24,7 +25,8 @@ router.get('/edit/:id', async (req, res) => {
     .then(record => {
       const currentCategory = categorys.find(category => record.categoryId === category.id).name
       categorys = categorys.filter(category => record.categoryId !== category.id)
-      res.render('edit', { record, categorys, currentCategory })
+      record.date = moment(record.date).format("YYYY-MM-DD")
+      res.render('edit', { record, categorys, currentCategory})
     })
     .catch(err => console.log(err))
 })
