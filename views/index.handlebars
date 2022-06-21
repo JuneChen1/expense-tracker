@@ -31,7 +31,11 @@
             <a href="/records/edit/{{ this._id }}" style="text-decoration: none; color: black;">修改</a>
           </td>
           <td style="vertical-align: middle; text-align: center">
-            <a href="" style="text-decoration: none; color: black;">刪除</a>
+            <form action="/records/delete/{{ this._id }}?_method=DELETE" method="POST">
+              <button type="submit" class="btn btn-light">
+                刪除
+              </button>
+            </form>
           </td>
         </tr>
       {{/each}}

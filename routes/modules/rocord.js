@@ -3,6 +3,7 @@ const router = express.Router()
 const moment = require('moment')
 const Record = require('../../models/record')
 const Category = require('../../models/category')
+const { rawListeners } = require('../../models/record')
 
 // add new record
 router.get('/new', async (req, res) => {
@@ -34,6 +35,14 @@ router.get('/edit/:id', async (req, res) => {
 router.put('/edit/:id', (req, res) => {
   const _id = req.params.id
   Record.findOneAndUpdate({ _id }, req.body)
+    .then(() => res.redirect('/'))
+    .catch(err => console.log(err))
+})
+
+// delete record
+router.delete('/delete/:id', (req, res) => {
+  const _id = req.params.id
+  Record.findOneAndDelete({ _id })
     .then(() => res.redirect('/'))
     .catch(err => console.log(err))
 })
