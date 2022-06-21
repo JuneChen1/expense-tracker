@@ -1,16 +1,14 @@
 <div class="mt-5">
-  <div class="form-group mb-4">
-    <form action="/sort">
-      <select name="sort" id="experience" onchange="submit()" style="width: 250px;">
+  <form action="/sort" class="mb-4">
+      <select name="sort" id="sort" onchange="submit()" style="width: 250px;">
         <option value="0">{{#if sortName}}{{ sortName }}{{else}}類別{{/if}}</option>
         <option value="1">家居物業</option>
         <option value="2">交通出行</option>
         <option value="3">休閒娛樂</option>
         <option value="4">餐飲食品</option>
         <option value="5">其他</option>
-      </form>
-    </select>
-  </div>
+      </select>
+  </form>
 
   <div class="total-amount d-flex mb-2">
     <span>總金額：</span>
