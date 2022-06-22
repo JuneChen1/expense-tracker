@@ -2,6 +2,7 @@ const express = require('express')
 const exphbs = require('express-handlebars')
 const methodOverride = require('method-override')
 const session = require('express-session')
+const usePassport = require('./config/passport')
 const routes = require('./routes')
 
 const app = express()
@@ -17,6 +18,7 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }))
+usePassport(app)
 app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 app.use(routes)
