@@ -3,6 +3,8 @@ const exphbs = require('express-handlebars')
 const methodOverride = require('method-override')
 const session = require('express-session')
 const usePassport = require('./config/passport')
+const Handlebars = require('handlebars')
+const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access')
 const routes = require('./routes')
 
 const app = express()
@@ -10,7 +12,10 @@ const app = express()
 require('dotenv').config()
 require('./config/mongoose')
 
-app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
+app.engine('handlebars', exphbs({ 
+  defaultLayout: 'main',
+  handlebars: allowInsecurePrototypeAccess(Handlebars)
+}))
 app.set('view engine', 'handlebars')
 
 app.use(session({
@@ -24,7 +29,6 @@ app.use(methodOverride('_method'))
 app.use((req, res, next) => {
   res.locals.isAuthenticated = req.isAuthenticated()
   res.locals.user = req.user
-  console.log(req.user)
   next()
 })
 app.use(routes)
