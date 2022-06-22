@@ -21,6 +21,12 @@ app.use(session({
 usePassport(app)
 app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
+app.use((req, res, next) => {
+  res.locals.isAuthenticated = req.isAuthenticated()
+  res.locals.user = req.user
+  console.log(req.user)
+  next()
+})
 app.use(routes)
 
 app.listen(process.env.PORT, () => {
