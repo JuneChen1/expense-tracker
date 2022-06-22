@@ -1,7 +1,7 @@
 # 記帳本
 紀錄每日支出的網站。
 ## 網站畫面
-![螢幕擷取畫面 2022-06-22 153754](https://user-images.githubusercontent.com/103798145/174971699-d8fb726e-d212-4342-a3a5-a15bd8dee729.jpg)
+![螢幕擷取畫面 2022-06-22 153536](https://user-images.githubusercontent.com/103798145/174973636-e22d6c90-9cac-4a2d-bc62-902a4c00fc76.jpg)
 ## 功能說明
 + 使用者可註冊帳號並登入
 + 可使用種子資料登入：
