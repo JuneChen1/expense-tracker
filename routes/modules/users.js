@@ -19,24 +19,27 @@ router.get('/register', (req, res) => {
 
 router.post('/register', (req, res) => {
   const { name, password, confirmPassword } = req.body
+  const error = {}
+  const errorMessage = {
+    error,
+    name,
+    password,
+    confirmPassword
+  }
   
   if (password !== confirmPassword) {
-    const error = { message: '密碼與確認密碼不相符' }
-    return res.render('register', {
-      error,
-      name,
-      password,
-      confirmPassword
-    })
+    error.message = '密碼與確認密碼不相符'
+    return res.render('register', errorMessage)
   }
+
   return bcrypt
     .genSalt(10)
     .then(salt => bcrypt.hash(password, salt))
     .then(hash => User.findOne({ name })
       .then(user => {
         if (user) {
-          console.log('user exist')
-          return res.render('register')
+          error.message = '這個名稱已被註冊'
+          return res.render('register', errorMessage)
         }
         User.create({ name, password: hash })
           .then(() => res.redirect('/'))

@@ -7,21 +7,22 @@ module.exports = app => {
   app.use(passport.initialize())
   app.use(passport.session())
 
-  passport.use(new LocalStrategy({ usernameField: 'name' }, (name, password, done) => {
+  passport.use(new LocalStrategy({ usernameField: 'name', passReqToCallback: true },
+  (req, name, password, done) => {
     User.findOne({ name })
       .then(user => {
         if (!user) {
-          return done(null, false, { message: '無此使用者' })
+          return done(null, false, req.flash('warning_msg', '無此使用者，請確認名稱輸入正確'))
         }
         return bcrypt.compare(password, user.password)
           .then(isMatch => {
             if (!isMatch) {
-              return done(null, false, { message: '名稱或密碼錯誤' })
+              return done(null, false, req.flash('warning_msg', '名稱或密碼錯誤'))
             }
             return done(null, user)
           })
       })
-      .catch(err => done(err, false))
+      .catch(err => console.log(err))
   }))
 
   passport.serializeUser((user, done) => {
