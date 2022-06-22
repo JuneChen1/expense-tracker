@@ -56,3 +56,4 @@ Express is running on http://localhost:3000
 + Method-override 3.0.0
 + Passport 0.4.1
 + Passport-local 1.0.0
++ Moment 2.29.3
