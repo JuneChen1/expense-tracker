@@ -6,8 +6,9 @@ const Category = require('../../models/category')
 
 router.get('/', async (req, res) => {
   const categories = await Category.find()
+  const userId = req.user._id
   let totalAmount = 0
-  Record.find()
+  Record.find({ userId })
     .lean()
     .sort({ date: 'asc' })
     .then(records => {
@@ -27,7 +28,8 @@ router.get('/sort', async (req, res) => {
   const categories = await Category.find()
   const sortName = categories.find(category => category.id.toString() === categoryId.toString()).name
   let totalAmount = 0
-  Record.find({ categoryId })
+  const userId = req.user._id
+  Record.find({ categoryId, userId })
     .lean()
     .then(records => {
       records.forEach(record => {

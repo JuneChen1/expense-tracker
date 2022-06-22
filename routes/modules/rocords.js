@@ -11,7 +11,15 @@ router.get('/new', async (req, res) => {
 })
 
 router.post('/new', (req, res) => {
-  Record.create(req.body)
+  const userId = req.user._id
+  const { name, date, categoryId, amount } = req.body
+  Record.create({
+    name,
+    date,
+    categoryId,
+    amount,
+    userId
+  })
     .then(() => res.redirect('/'))
     .catch(err => console.log(err))
 })
@@ -19,8 +27,9 @@ router.post('/new', (req, res) => {
 // edit record
 router.get('/edit/:id', async (req, res) => {
   let categorys = await Category.find().lean().sort({ id: 'asc' })
+  const userId = req.user._id
   const _id = req.params.id
-  Record.findOne({ _id })
+  Record.findOne({ _id, userId })
     .lean()
     .then(record => {
       const currentCategory = categorys.find(category => record.categoryId === category.id).name
@@ -32,16 +41,18 @@ router.get('/edit/:id', async (req, res) => {
 })
 
 router.put('/edit/:id', (req, res) => {
+  const userId = req.user._id
   const _id = req.params.id
-  Record.findOneAndUpdate({ _id }, req.body)
+  Record.findOneAndUpdate({ _id, userId }, req.body)
     .then(() => res.redirect('/'))
     .catch(err => console.log(err))
 })
 
 // delete record
 router.delete('/delete/:id', (req, res) => {
+  const userId = req.user._id
   const _id = req.params.id
-  Record.findOneAndDelete({ _id })
+  Record.findOneAndDelete({ _id, userId })
     .then(() => res.redirect('/'))
     .catch(err => console.log(err))
 })
