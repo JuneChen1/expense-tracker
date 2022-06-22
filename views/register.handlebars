@@ -6,17 +6,17 @@
       <form action="/users/register" method="POST">
         <div class="form-group">
           <label for="name">名稱</label>
-          <input type="text" id="name" name="name" class="form-control" placeholder="Enter Name" value="{{ name }}" required>
+          <input type="text" id="name" name="name" class="form-control" placeholder="請輸入名稱" value="{{ name }}" required>
         </div>
         <div class="form-group mt-3">
           <label for="password">密碼</label>
-          <input type="password" id="password" name="password" class="form-control" placeholder="Enter Password"
+          <input type="password" id="password" name="password" class="form-control" placeholder="請輸入密碼"
             value="{{ password }}" required>
         </div>
         <div class="form-group mt-3">
           <label for="confirmPassword">確認密碼</label>
           <input type="password" id="confirmPassword" name="confirmPassword" class="form-control"
-            placeholder="Confirm Password" value="{{ confirmPassword }}" required>
+            placeholder="確認密碼" value="{{ confirmPassword }}" required>
         </div>
         <button type="submit" class="btn btn-secondary btn-block mt-4 mb-2" style="width: 100%;">註冊</button>
       </form>
