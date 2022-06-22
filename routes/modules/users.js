@@ -19,6 +19,16 @@ router.get('/register', (req, res) => {
 
 router.post('/register', (req, res) => {
   const { name, password, confirmPassword } = req.body
+  
+  if (password !== confirmPassword) {
+    const error = { message: '密碼與確認密碼不相符' }
+    return res.render('register', {
+      error,
+      name,
+      password,
+      confirmPassword
+    })
+  }
   return bcrypt
     .genSalt(10)
     .then(salt => bcrypt.hash(password, salt))
@@ -37,6 +47,7 @@ router.post('/register', (req, res) => {
 
 router.get('/logout', (req, res) => {
   req.logout()
+  req.flash('success_msg', '你已成功登出。')
   res.redirect('/users/login')
 })
 

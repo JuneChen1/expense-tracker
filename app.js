@@ -5,6 +5,7 @@ const session = require('express-session')
 const usePassport = require('./config/passport')
 const Handlebars = require('handlebars')
 const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access')
+const flash = require('connect-flash')
 const routes = require('./routes')
 
 const app = express()
@@ -24,11 +25,14 @@ app.use(session({
   saveUninitialized: true
 }))
 usePassport(app)
+app.use(flash())
 app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 app.use((req, res, next) => {
   res.locals.isAuthenticated = req.isAuthenticated()
   res.locals.user = req.user
+  res.locals.success_msg = req.flash('success_msg')
+  res.locals.warning_msg = req.flash('warning_msg')
   next()
 })
 app.use(routes)
