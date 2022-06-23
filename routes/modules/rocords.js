@@ -34,8 +34,8 @@ router.get('/edit/:id', async (req, res) => {
     .then(record => {
       const currentCategory = categorys.find(category => record.categoryId === category.id).name
       categorys = categorys.filter(category => record.categoryId !== category.id)
-      record.date = moment(record.date).format("YYYY-MM-DD")
-      res.render('edit', { record, categorys, currentCategory})
+      record.date = moment(record.date).format('YYYY-MM-DD')
+      res.render('edit', { record, categorys, currentCategory })
     })
     .catch(err => console.log(err))
 })

@@ -26,7 +26,7 @@ router.post('/register', (req, res) => {
     password,
     confirmPassword
   }
-  
+
   if (password !== confirmPassword) {
     error.message = '密碼與確認密碼不相符'
     return res.render('register', errorMessage)

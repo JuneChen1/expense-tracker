@@ -15,7 +15,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 require('./config/mongoose')
 
-app.engine('handlebars', exphbs({ 
+app.engine('handlebars', exphbs({
   defaultLayout: 'main',
   handlebars: allowInsecurePrototypeAccess(Handlebars)
 }))
