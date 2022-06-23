@@ -2,7 +2,7 @@ const db = require('../../config/mongoose')
 const bcrypt = require('bcryptjs')
 const User = require('../user')
 const Record = require('../record')
-const SEED_RECORD = require('../../seedrecord.json').data
+const SEED_RECORD = require('./seedrecord.json').data
 
 db.once('open', () => {
   Promise.all(Array.from(SEED_RECORD, seedRecord => {
