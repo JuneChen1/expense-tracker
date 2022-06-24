@@ -11,6 +11,7 @@ db.once('open', () => {
       .then(salt => bcrypt.hash(seedRecord.password, salt))
       .then(hash => User.create({
         name: seedRecord.name,
+        email: seedRecord.email,
         password: hash
       }))
       .then(user => {

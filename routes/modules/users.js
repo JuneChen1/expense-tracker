@@ -18,11 +18,12 @@ router.get('/register', (req, res) => {
 })
 
 router.post('/register', (req, res) => {
-  const { name, password, confirmPassword } = req.body
+  const { name, email, password, confirmPassword } = req.body
   const error = {}
   const errorMessage = {
     error,
     name,
+    email,
     password,
     confirmPassword
   }
@@ -35,13 +36,13 @@ router.post('/register', (req, res) => {
   return bcrypt
     .genSalt(10)
     .then(salt => bcrypt.hash(password, salt))
-    .then(hash => User.findOne({ name })
+    .then(hash => User.findOne({ email })
       .then(user => {
         if (user) {
           error.message = '這個名稱已被註冊'
           return res.render('register', errorMessage)
         }
-        User.create({ name, password: hash })
+        User.create({ name, email, password: hash })
           .then(() => res.redirect('/'))
           .catch(err => console.log(err))
       })

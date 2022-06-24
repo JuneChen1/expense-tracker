@@ -2,6 +2,7 @@
   "data": [
     {
       "name": "廣志",
+      "email": "root@example.com",
       "password": "123",
       "records": [
       {
@@ -32,6 +33,7 @@
     },
     {
       "name": "小新",
+      "email": "root2@example.com",
       "password": "123",
       "records": [
         {
