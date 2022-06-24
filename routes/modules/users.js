@@ -39,7 +39,7 @@ router.post('/register', (req, res) => {
     .then(hash => User.findOne({ email })
       .then(user => {
         if (user) {
-          error.message = '這個名稱已被註冊'
+          error.message = '這個 Email 已被註冊'
           return res.render('register', errorMessage)
         }
         User.create({ name, email, password: hash })
